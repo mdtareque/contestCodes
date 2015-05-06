@@ -4,6 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+
+enum STATIC_DATA {
+	NINE(9);
+	int num;
+	private STATIC_DATA(int i) {
+		this.num = i;
+	}
+	static int findMinsForNum(int x) {
+		return 0;
+	}
+}
 public class PB {
 	int D;
 	int maxP;

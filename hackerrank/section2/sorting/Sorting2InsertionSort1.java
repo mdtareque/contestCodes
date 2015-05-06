@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author mtk
  * url: https://www.hackerrank.com/challenges/insertionsort1
  */
-// BUG
+// DONE
 public class Sorting2InsertionSort1 {
 
     public static void insertIntoSorted(int[] ar) {
@@ -17,16 +17,27 @@ public class Sorting2InsertionSort1 {
         boolean inplace = false;
         s = ar.length;
         v = ar[s - 1];
+        if(s > 1) {
+            ar[s - 1] = ar[s - 2];
+        }
         i = s - 2;
+        printArray(ar);
+        // v = 1
+        // 2 4 5 8 4 4
+        // ^
         do {
-            if(ar[i] < v) {
+            if(i == 0) {
+                ar[i] = v;
+                i--;
+            } else if(((i > 0) && (ar[i - 1] < v)) && (ar[i + 1] > v)) {
+                ar[i] = v;
                 inplace = true;
-            } else {
+            } else if((i > 0) && (ar[i - 1] > v)) {
                 ar[i] = ar[i - 1];
-                ar[i - 1] = v;
+                i--;
             }
             printArray(ar);
-        } while(!inplace);
+        } while(!inplace && (i >= 0));
     }
 
     /* Tail starts here */
@@ -37,6 +48,7 @@ public class Sorting2InsertionSort1 {
         for(int i = 0; i < s; i++) {
             ar[i] = in.nextInt();
         }
+//      int[] ar2 = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 1 };
         insertIntoSorted(ar);
     }
 
