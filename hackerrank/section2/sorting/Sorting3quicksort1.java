@@ -7,16 +7,18 @@ import java.util.Scanner;
 
 /**
  * @author mtk
- * url: https://www.hackerrank.com/challenges/insertionsort2
+ * url: https://www.hackerrank.com/challenges/runningtime
  */
-// DONE
-public class Sorting2InsertionSort2 {
+public class Sorting3quicksort1 {
+
+    static int shifts = 0;
 
     public static void insertIntoSortedArray(int[] ar, int i) {
         int n = ar[i];
         i--;
         while((i >= 0) && (ar[i] > n)) {
             ar[i + 1] = ar[i]; // shift right
+            shifts++;
             i--;
         }
         ar[i + 1] = n;
@@ -40,6 +42,7 @@ public class Sorting2InsertionSort2 {
             
         }
         insertionSort(ar);
+        System.out.println(shifts);
     }
 
     private static void printArray(int[] ar) {

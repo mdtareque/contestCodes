@@ -10,7 +10,13 @@ import java.util.Scanner;
  *
  */
 public class MtkUtils {
-    static void p(final Object o) {
+
+    // a must be larger number
+    public static long gcd(long a, long b) {
+        return(b == 0 ? a : gcd(b, a % b));
+    }
+
+    public static void p(final Object o) {
         System.out.println(o);
     }
 }
@@ -22,7 +28,7 @@ class Template {
         int t, a, b;
         t = in.nextInt();
         // read test case and two number in each
-        for (int i = 0; i < t; i++) {
+        for(int i = 0; i < t; i++) {
             a = in.nextInt();
             b = in.nextInt();
             MtkUtils.p(a);
