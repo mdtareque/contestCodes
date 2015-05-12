@@ -1,5 +1,6 @@
 package hackerrank.section1.warmup;
 
+import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
 public class Template {
@@ -9,7 +10,9 @@ public class Template {
     }
 
     public static void main(final String[] args) {
-        final Scanner in = new Scanner(System.in);
+    	String input = "";
+        final Scanner in = new Scanner(new ByteArrayInputStream(input.getBytes()));
+//        final Scanner in = new Scanner(System.in);
         int T, sum = 0, a, b;
         T = in.nextInt();
         for (int i = 0; i < T; i++) {
