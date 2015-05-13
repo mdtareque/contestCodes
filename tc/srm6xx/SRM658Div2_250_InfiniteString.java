@@ -1,6 +1,5 @@
 package tc.srm6xx;
 
-import static utils.MtkUtils.p;
 
 /**
  * @author mtk
@@ -11,6 +10,11 @@ public class SRM658Div2_250_InfiniteString {
         InfiniteString i = new InfiniteString();
         p(i.equal("ababab", "abab"));
     }
+
+    static void p(final Object o) {
+        System.out.println(o);
+    }
+
 }
 
 class InfiniteString {

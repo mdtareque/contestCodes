@@ -4,8 +4,10 @@ import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
 /**
- * @author mtk
+ * @author mtk [http://mtktechiecode.blogspot.in/]
  * url: https://www.hackerrank.com/challenges/connected-cell-in-a-grid
+ * Description: 
+ * GEM: Depth First Search: make the grid larger by 2x2, and beautifully loop over all cells, 
  */
 // DONE MEDIUM RECURSION, checks setter solution
 public class Search1ConnectedGrid {
@@ -32,18 +34,47 @@ public class Search1ConnectedGrid {
 //        final Scanner in = new Scanner(System.in);
         m = in.nextInt();
         n = in.nextInt();
-        grid = new int[m][n];
-        for(int i = 0; i < m; i++) {
-        	for(int j = 0; j < n; j++) {
+        grid = new int[m+2][n+2];
+        for(int i = 1; i <= m; i++) {
+        	for(int j = 1; j <= n; j++) {
         		grid[i][j] = in.nextInt();
         		if(grid[i][j] == 1) numOf1s++;
 //        		System.out.print(grid[i][j] + " ");
         	}
 //        	System.out.println();
         }
-        p(findMaxConnectedComponent(grid, numOf1s));
+//        p(findMaxConnectedComponent(grid, numOf1s));
+        int cnt=0;
+        for(int i = 0; i < m; i++) {
+        	for(int j = 0; j < n; j++) {
+        		if(grid[i][j] == 1)
+        			cnt = dfs(grid, i, j, 2);
+        	}
+        }
+        System.out.println(maxCountSoFar-1);
     }
 
+    static int maxCountSoFar=0; 
+    
+    static int dfs(int[][] grid2, int i, int j, int count){
+//    	printGrid();
+    	if(grid[i][j] ==1) {
+    		grid[i][j] = count;
+    		for(int k=-1; k<=1; k++) {
+    			for(int l=-1; l<=1; l++) {
+    				if((k*k + l*l) >0) {
+    					if(grid[i+k][j+l] == 1){
+    						count = dfs(grid, i+k, j+l, count + 1);
+    					}
+    				}
+    			}
+    			
+    		}
+    	}
+    	if(count > maxCountSoFar) maxCountSoFar = count;
+    	return count;
+    }
+    
 	/**
 	 * @param grid
 	 * @return
@@ -73,23 +104,17 @@ public class Search1ConnectedGrid {
 		return maxSoFar;
 	}
 
-	/**
-	 * 
-	 */
 	private static void printGrid() {
 		System.out.println();
 		System.out.println();
 		for(int i = 0; i < grid.length; i++) {
         	for(int j = 0; j < grid[i].length; j++) {
-        		System.out.print(grid[i][j]+ " ");
+        		System.out.printf(" %02d ",grid[i][j]);
         	}
         	System.out.println();
 		}
 	}
-
-	/**
-	 * 
-	 */
+	
 	private static void zeroingCellsThisScan() {
 		for(int i = 0; i < grid.length; i++) {
         	for(int j = 0; j < grid[i].length; j++) {
@@ -98,11 +123,6 @@ public class Search1ConnectedGrid {
         }
 	}
 
-	/**
-	 * @param grid
-	 * @param i
-	 * @param j
-	 */
 	private static int markAll(int i, int j) {
 		if(i<0 && j<0) return 0;
 		if(i>=m ||j>=n) return 0;
