@@ -30,6 +30,7 @@ public class Search1ConnectedGrid {
     			"0 1 0 1 1 0 1 1 0\r\n" + 
     			"0 1 0 0 1 1 0 1 1\r\n" + 
     			"1 0 1 1 1 1 0 0 0\r\n";
+    	input = "2\n2\n 1 0\n 1 0\n";
         final Scanner in = new Scanner(new ByteArrayInputStream(input.getBytes()));
 //        final Scanner in = new Scanner(System.in);
         m = in.nextInt();
@@ -49,6 +50,7 @@ public class Search1ConnectedGrid {
         	for(int j = 0; j < n; j++) {
         		if(grid[i][j] == 1)
         			cnt = dfs(grid, i, j, 2);
+//        		System.out.println( "count is "+cnt);
         	}
         }
         System.out.println(maxCountSoFar-1);
@@ -57,11 +59,13 @@ public class Search1ConnectedGrid {
     static int maxCountSoFar=0; 
     
     static int dfs(int[][] grid2, int i, int j, int count){
-//    	printGrid();
+    	printGrid();
     	if(grid[i][j] ==1) {
     		grid[i][j] = count;
     		for(int k=-1; k<=1; k++) {
     			for(int l=-1; l<=1; l++) {
+    				System.out.println("k: " +k + ", l : " + l + " -> " +(k*k + l*l));
+//    				System.out.println("k*k : " + k*k +", l*l : "+ l*l);
     				if((k*k + l*l) >0) {
     					if(grid[i+k][j+l] == 1){
     						count = dfs(grid, i+k, j+l, count + 1);
