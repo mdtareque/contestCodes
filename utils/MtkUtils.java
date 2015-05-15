@@ -4,13 +4,25 @@
 package utils;
 
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 /**
  * @author mtk
- *
+ * TODO 
+ * 1. add template for each contest site
+ * 2. add template for each problem pattern (Test case loop over.)
  */
 public class MtkUtils {
 
+	/*
+my code templates
+loop2d
+bfreader
+strscanner
+scanner
+toIntArray
+
+	 */
 }
 
 class Template {
@@ -60,5 +72,11 @@ class Template {
 			System.out.println();
 		}
 	}
-
+	
+//	private static final Pattern splitOnSpace = Pattern.compile(" ");	
+	private static int[] parseIntArray(String str) {
+		return Stream.of(str).mapToInt(Integer::parseInt).toArray();
+//		return splitOnSpace.splitAsStream(str).mapToInt(Integer::parseInt).toArray();
+	}
+	
 }
